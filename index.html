@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デメテルプロジェクト — 協賛・協力者募集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 300;
+  color: #2D2D2D;
+  background: #F0E8D0;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, padding 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(27, 42, 74, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 40px;
+}
+
+.nav-logo {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #D4C8B8;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #D4C8B8;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+  opacity: 0.8;
+}
+
+.nav-links a:hover {
+  color: #C4A882;
+  opacity: 1;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #D4C8B8;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Mobile overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 17, 35, 0.97);
+  z-index: 1050;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-menu.open {
+  display: flex;
+  opacity: 1;
+}
+
+.mobile-menu a {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #D4C8B8;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0B1123;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('hero-bg.jpeg') center center / cover no-repeat;
+  opacity: 0.4;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 214, 128, 0.6) 0%, transparent 70%);
+  animation: drift linear infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(30px);
+    opacity: 0;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 700px;
+}
+
+.hero-tagline {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 4px;
+  line-height: 2.2;
+  margin-bottom: 32px;
+}
+
+.hero-tagline em {
+  font-style: normal;
+  color: #F5D680;
+}
+
+.hero-divider {
+  width: 40px;
+  height: 1px;
+  background: #8B7355;
+  margin: 28px auto;
+}
+
+.hero-project-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.hero-sub {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #D4C8B8;
+  letter-spacing: 3px;
+  opacity: 0.8;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-indicator span {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 10px;
+  color: #8B7355;
+  letter-spacing: 3px;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, #8B7355, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 100px 0;
+}
+
+.section-light {
+  background: #F0E8D0;
+}
+
+.section-dark {
+  background: #1B2A4A;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section-label {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #8B7355;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #1B2A4A;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-title-dark {
+  color: #D4C8B8;
+}
+
+.gold-line {
+  width: 30px;
+  height: 1px;
+  background: #8B7355;
+  margin: 0 auto 40px;
+}
+
+/* Fade in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== STORY SECTION ===== */
+.story-lead {
+  font-size: 20px;
+  font-weight: 400;
+  color: #1B2A4A;
+  text-align: center;
+  line-height: 2.2;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.story-highlight {
+  font-size: 22px;
+  font-weight: 400;
+  color: #6B5B7B;
+  text-align: center;
+  padding: 36px 0;
+  margin: 32px 0;
+  position: relative;
+}
+
+.story-highlight::before,
+.story-highlight::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: #8B7355;
+  margin: 0 auto;
+}
+
+.story-highlight::before {
+  margin-bottom: 28px;
+}
+
+.story-highlight::after {
+  margin-top: 28px;
+}
+
+.story-body {
+  font-size: 15px;
+  font-weight: 300;
+  color: #3A2E24;
+  line-height: 2.2;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ===== ORIGIN CARD ===== */
+.origin-card {
+  background: #E6D5B8;
+  padding: 50px;
+  border-radius: 4px;
+}
+
+.origin-card p {
+  font-size: 15px;
+  font-weight: 300;
+  color: #3A2E24;
+  line-height: 2.2;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.origin-card p + p {
+  margin-top: 28px;
+}
+
+.origin-highlight {
+  font-size: 17px;
+  font-weight: 400;
+  color: #1B2A4A !important;
+}
+
+/* ===== CREDENTIALS ===== */
+.credential-lead {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1B2A4A;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 2;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.credential-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.credential-item {
+  display: flex;
+  gap: 32px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+  align-items: baseline;
+}
+
+.credential-item:last-child {
+  border-bottom: none;
+}
+
+.credential-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #8B7355;
+  min-width: 120px;
+  text-align: right;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.credential-year .jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.credential-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #3A2E24;
+  line-height: 1.9;
+}
+
+/* ===== VISION (DARK) ===== */
+.vision-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vision-card {
+  border: 1px solid rgba(139, 115, 85, 0.2);
+  border-left: 3px solid transparent;
+  background: rgba(27, 42, 74, 0.5);
+  padding: 28px 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, border-left-color 0.3s;
+}
+
+.vision-card:hover {
+  background: rgba(27, 42, 74, 0.7);
+  border-left-color: #C4A882;
+}
+
+.vision-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vision-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #C4A882;
+  letter-spacing: 2px;
+}
+
+.vision-card-toggle {
+  font-size: 14px;
+  color: #8B7355;
+  transition: transform 0.4s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.vision-card:hover .vision-card-toggle {
+  animation: chevronBounce 1s ease infinite;
+}
+
+.vision-card.open .vision-card-toggle {
+  transform: rotate(180deg);
+  animation: none;
+}
+
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.vision-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+.vision-card.open .vision-card-body {
+  max-height: 500px;
+  padding-top: 20px;
+}
+
+.vision-card-body p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #D4C8B8;
+  line-height: 2.2;
+  opacity: 0.85;
+}
+
+.vision-card-body-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.vision-illust {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
+  border-radius: 6px;
+}
+
+/* ===== PROFILE ===== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.profile-photo-wrap {
+  position: relative;
+  width: 340px;
+  height: 460px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #2A3A5A 0%, #1B2A4A 100%);
+}
+
+.profile-photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: -10px;
+  bottom: -10px;
+  border: 1px solid rgba(196, 168, 130, 0.4);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+.profile-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #D4C8B8;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.profile-titles {
+  font-size: 13px;
+  color: #C4A882;
+  line-height: 2;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.profile-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(212, 200, 184, 0.85);
+  line-height: 2.2;
+}
+
+.profile-text p + p {
+  margin-top: 20px;
+}
+
+/* ===== WORK ===== */
+.work {
+  background: #0B1123;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.work-label {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #8B7355;
+  margin-bottom: 28px;
+}
+
+.work-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 8px;
+  line-height: 1.4;
+}
+
+.work-genre {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #D4C8B8;
+  letter-spacing: 4px;
+  margin-top: 14px;
+  opacity: 0.8;
+}
+
+.work-divider {
+  width: 40px;
+  height: 1px;
+  background: #8B7355;
+  margin: 40px auto;
+}
+
+.work-core {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 21px;
+  font-weight: 300;
+  color: #F5D680;
+  letter-spacing: 3px;
+  line-height: 2.2;
+  margin-bottom: 48px;
+}
+
+.work-lead {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(212, 200, 184, 0.9);
+  line-height: 2.4;
+  letter-spacing: 1px;
+  margin-bottom: 52px;
+}
+
+.work-facts {
+  list-style: none;
+  display: inline-block;
+  text-align: left;
+}
+
+.work-facts li {
+  font-size: 13px;
+  font-weight: 300;
+  color: #D4C8B8;
+  letter-spacing: 1px;
+  line-height: 2.6;
+  opacity: 0.85;
+}
+
+.work-facts .label {
+  color: #8B7355;
+  margin-right: 16px;
+}
+
+/* ===== 2027 BAND ===== */
+.target-band {
+  position: relative;
+  background: linear-gradient(135deg, #0B1123 0%, #1B2A4A 50%, #0B1123 100%);
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.target-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 200px;
+  font-weight: 300;
+  color: rgba(196, 168, 130, 0.06);
+  letter-spacing: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.target-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.target-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(196, 168, 130, 0.15);
+  letter-spacing: 10px;
+  margin-bottom: 40px;
+}
+
+.target-text {
+  font-size: 15px;
+  font-weight: 300;
+  color: #D4C8B8;
+  line-height: 2.4;
+  letter-spacing: 2px;
+}
+
+.target-text p + p {
+  margin-top: 24px;
+}
+
+/* ===== COLLAB CARDS ===== */
+.collab-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.collab-card {
+  background: #E6D5B8;
+  padding: 40px 32px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.collab-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #1B2A4A;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.collab-card-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: #3A2E24;
+  line-height: 2;
+  margin-bottom: 28px;
+}
+
+.about-link {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8B7355;
+  text-decoration: none;
+  border-bottom: 1px solid #8B7355;
+  padding-bottom: 2px;
+  letter-spacing: 1px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.about-link:hover {
+  color: #C4A882;
+  border-color: #C4A882;
+}
+
+/* ===== CONTACT ===== */
+.contact-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #1B2A4A;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #3A2E24;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #2D2D2D;
+  background: #F0E8D0;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #8B7355;
+}
+
+.form-group textarea {
+  height: 140px;
+  resize: vertical;
+}
+
+.submit-btn {
+  display: inline-block;
+  padding: 14px 48px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+  background: #1B2A4A;
+  border: 1px solid #1B2A4A;
+  border-radius: 3px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: background 0.3s, color 0.3s;
+  margin-top: 12px;
+}
+
+.submit-btn:hover {
+  background: transparent;
+  color: #1B2A4A;
+}
+
+.contact-note {
+  margin-top: 32px;
+  font-size: 13px;
+  color: #8B7355;
+  letter-spacing: 1px;
+}
+
+.contact-note a {
+  color: #8B7355;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.4);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #0B1123;
+  padding: 48px 0;
+  text-align: center;
+}
+
+.footer p {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(212, 200, 184, 0.5);
+  letter-spacing: 2px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav {
+    padding: 16px 20px;
+  }
+
+  .nav.scrolled {
+    padding: 12px 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-tagline {
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 2;
+  }
+
+  .hero-project-name {
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .story-lead {
+    font-size: 17px;
+  }
+
+  .story-highlight {
+    font-size: 18px;
+  }
+
+  .origin-card {
+    padding: 32px 24px;
+  }
+
+  .credential-item {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .credential-year {
+    text-align: left;
+    min-width: auto;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .profile-photo-wrap {
+    width: 260px;
+    height: 350px;
+    margin: 0 auto;
+  }
+
+  .work {
+    padding: 80px 0;
+  }
+
+  .work-title {
+    font-size: 30px;
+    letter-spacing: 5px;
+  }
+
+  .work-core {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  .target-watermark {
+    font-size: 100px;
+  }
+
+  .target-year {
+    font-size: 48px;
+  }
+
+  .collab-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .collab-card {
+    padding: 32px 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">デメテルプロジェクト</a>
+  <ul class="nav-links">
+    <li><a href="#story">ストーリー</a></li>
+    <li><a href="#credentials">実績</a></li>
+    <li><a href="#vision">ビジョン</a></li>
+    <li><a href="#profile">プロフィール</a></li>
+    <li><a href="#work">作品</a></li>
+    <li><a href="#collab">参加・協力</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story">ストーリー</a>
+  <a href="#credentials">実績</a>
+  <a href="#vision">ビジョン</a>
+  <a href="#profile">プロフィール</a>
+  <a href="#work">作品</a>
+  <a href="#collab">参加・協力</a>
+  <a href="#contact">お問い合わせ</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content fade-in">
+    <p class="hero-tagline">
+      人は何度でも自分の物語を<br>新しく<em>紡げる</em>。<br>その瞬間を、舞台で。
+    </p>
+    <div class="hero-divider"></div>
+    <p class="hero-project-name">デメテルプロジェクト</p>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">2027年秋、池袋にて——はじまりの幕が上がる。</p>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section section-light" id="story">
+  <div class="container">
+    <div class="gold-line fade-in"></div>
+    <div class="fade-in">
+      <p class="story-lead">
+        カウンセリングの現場で4万件以上<br>
+        人が自分の物語を、新しく創り出す瞬間に<br>
+        立ちあってきた。
+      </p>
+    </div>
+    <div class="fade-in">
+      <p class="story-highlight">その静かな奇跡を、舞台にする。</p>
+    </div>
+    <div class="fade-in">
+      <p class="story-body">
+        35年間、延べ4万件を超える対話の現場に立ち続けた<br>
+        一人の心理臨床家がいる。<br><br>
+        人生の岐路に立つ人々と向き合い<br>
+        絶望の中でなお希望の光を探そうとする歩みに伴走してきた。<br><br>
+        その対話の積み重ねの中で、ひとつの確信に至る。<br>
+        人は何度でも自分の物語を新しく紡ぐことができる。<br><br>
+        その確信を、舞台という形で届けるために<br>
+        デメテルプロジェクトは生まれた。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGIN -->
+<section class="section section-light" id="origin">
+  <div class="container">
+    <div class="section-title fade-in">デメテルの由来</div>
+    <div class="gold-line fade-in"></div>
+    <div class="origin-card fade-in">
+      <p>
+        2020年、コロナ禍。<br>
+        東京都芸術文化支援事業「アートにエールを！」をきっかけに<br>
+        アーティストたちと7分間のショートムービーを制作。<br>
+        宣伝なしで、約1万回再生された。
+      </p>
+      <p class="origin-highlight">
+        あの小さな物語のように——<br>
+        今度は、舞台で届けたい。
+      </p>
+      <p>
+        そんな思いを込めて<br>
+        このプロジェクトを「デメテルプロジェクト」と名づけた。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="section section-light" id="credentials">
+  <div class="container">
+    <div class="section-title fade-in">実績</div>
+    <div class="gold-line fade-in"></div>
+    <p class="credential-lead fade-in">臨床心理士・公認心理師として35年、延べ4万件超の相談に携わる。</p>
+    <div class="credential-list fade-in">
+      <div class="credential-item">
+        <span class="credential-year">2004–2008<span class="jp">年</span></span>
+        <span class="credential-desc">日本経済新聞コラム「こころのサプリメント」初代執筆者。<br>連載1年目に、日経を代表する連載「私の履歴書」と並び、読者投票トップ5にランクイン</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-year">2020<span class="jp">年</span>3<span class="jp">月</span></span>
+        <span class="credential-desc">『ふりまわされない自分をつくる「わがまま」の練習』角川書店より出版</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-year">2020<span class="jp">年</span>8<span class="jp">月</span></span>
+        <span class="credential-desc">東京都芸術文化活動支援事業に採択される。<br>ショートムービー制作（再生約1万回）</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-year">2025<span class="jp">年</span>9<span class="jp">月</span></span>
+        <span class="credential-desc">劇団かはづ書屋　柳井祥緒 脚本『ポオの眷属たち』<br>第一話「エディプスの心臓」精神分析監修（新宿眼科画廊）</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-year">2025<span class="jp">年</span>9<span class="jp">月</span></span>
+        <span class="credential-desc">『音楽と朗読のマチネ』主催（サローネ・フォンタナ／世田谷区）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="section section-dark" id="vision">
+  <div class="container">
+    <div class="section-title section-title-dark fade-in">ビジョン</div>
+    <div class="gold-line fade-in"></div>
+    <div class="vision-cards fade-in">
+      <div class="vision-card open" data-accordion>
+        <div class="vision-card-header">
+          <span class="vision-card-title">物語 ——人は、自分の人生という物語を生きている</span>
+          <span class="vision-card-toggle">&#9662;</span>
+        </div>
+        <div class="vision-card-body">
+          <div class="vision-card-body-inner">
+            <p>人は誰しも自分の経験が織りなす物語の中を生きている。そしてその物語がものの見方や選択を静かに支配していることに、私たちはほとんど気づかない。同時に私たちは、時代や社会が通奏低音のように奏で続ける、より大きな物語の流れの中にもいる。演劇は、その両方の物語をいったん舞台の上に取り出し、少し遠くから見つめ直す力を持っている。無自覚のうちに信じ込んでいた「自分の物語」に気づくこと——それこそが、より自由に生き直すための最初の一歩となる。</p>
+            <img src="story.png" alt="物語" class="vision-illust">
+          </div>
+        </div>
+      </div>
+      <div class="vision-card" data-accordion>
+        <div class="vision-card-header">
+          <span class="vision-card-title">対話 ——物語は、対話の中で静かに動き始める</span>
+          <span class="vision-card-toggle">&#9662;</span>
+        </div>
+        <div class="vision-card-body">
+          <div class="vision-card-body-inner">
+            <p>しかし、気づくだけでは物語は変わらない。物語が動き始めるのは誰かとの対話の中においてである。他者の言葉が思いがけない角度から自分を照らし、それまで見えなかった意味が、ふと浮かび上がる瞬間がある。対話とは、単なる情報の交換ではない。それは固まりかけていた自分の物語に、新しい息を吹き込む行為である。人は対話を通じて、自分が信じてきた物語を問い直し、まだ語られていなかった自分の声を、少しずつ取り戻していく。</p>
+            <img src="taiwa.jpeg" alt="対話" class="vision-illust">
+          </div>
+        </div>
+      </div>
+      <div class="vision-card" data-accordion>
+        <div class="vision-card-header">
+          <span class="vision-card-title">再生 ——人は何度でも自分の物語を新しく紡いでいける</span>
+          <span class="vision-card-toggle">&#9662;</span>
+        </div>
+        <div class="vision-card-body">
+          <div class="vision-card-body-inner">
+            <p>対話の中で揺れ動いた物語は、やがて新しい形を帯び始める。人生とは、一度書かれたら変えられない台本ではない。どれほど深い傷を抱えていても、どれほど長く同じ物語の中に閉じ込められていたとしても、人は何度でも、自らの手で新しい物語を紡ぎ出すことができる。それが人間という存在の、静かなしかし揺るぎない可能性である。気づき、対話し、そして再び歩き出す——その繰り返しの中にこそ、人の物語の本当の豊かさは宿っている。</p>
+            <img src="tumugu.png" alt="再生" class="vision-illust">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section class="section section-dark" id="profile">
+  <div class="container">
+    <div class="section-title section-title-dark fade-in">プロフィール</div>
+    <div class="gold-line fade-in"></div>
+    <div class="profile-grid fade-in">
+      <div class="profile-photo-wrap">
+        <img src="IMG_3321-2.jpg" alt="公珠子" class="profile-photo" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <h3 class="profile-name">公珠子（KUMIKO）</h3>
+        <p class="profile-titles">
+          プロデューサー／著者<br>
+          対話と心理の専門家<br>
+          （臨床心理士・公認心理師）
+        </p>
+        <div class="profile-text">
+          <p>20代で心理臨床の道に入り、以来35年にわたり延べ4万件を超える相談に携わる。人生の岐路に立つ人々と向き合い、絶望の中でなお希望の光を見い出そうとする歩みに伴走してきた。</p>
+          <p>その長い対話の積み重ねの中で、ひとつの確信に至る。<br>「人は、何度でも自分の物語を新しく紡ぐことができる存在である」ということ。</p>
+          <p>カウンセリングという場では、ときに言葉にならないほど静かな奇跡が起こる。人が自分の人生を見つめ直し、新しい物語を紡ぎ始めるその瞬間に幾度も立ち会う中で、その営みをアートや演劇というかたちで表現し、この時代を生きる人々と分かち合いたいと願うようになる。</p>
+          <p>その思いから、人間の再生の物語を舞台作品として届ける、<br>デメテルプロジェクトを立ち上げる。</p>
+          <p>なお「公珠子」という名前には、「公（ひらかれた場）」「珠（時間をかけて育まれる真実）」「子（それを運ぶ存在）」という意味を重ねている。<br>人の内奥で育まれた一粒の真実を、社会というひらかれた場に届けたい。そんな思いを込めた名前である。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-inner fade-in">
+    <p class="work-label">上演作品</p>
+    <h2 class="work-title">声のない森</h2>
+    <p class="work-genre">群像劇</p>
+    <div class="work-divider"></div>
+    <p class="work-core">弱さをひらく勇気と、<br>逸らさないまなざしが出会う、じかん。</p>
+    <p class="work-lead">
+      夕暮れ時、石造りの小屋に5人が居合わせる。<br>
+      大きな事件は起きない。ただ——何かが動き始める。<br><br>
+      長い時間をかけて抱えてきたもの。<br>
+      声にならなかったもの。閉じていたもの。<br>
+      それが一夜のうちに静かに花開く。
+    </p>
+    <ul class="work-facts">
+      <li><span class="label">会場</span>シアターグリーン BASE THEATER（70席）</li>
+      <li><span class="label">上演時間</span>75〜80分（一幕一続き・転換なし）</li>
+      <li><span class="label">出演</span>5名</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2027 BAND -->
+<section class="target-band" id="target">
+  <div class="target-watermark">2027</div>
+  <div class="target-content fade-in">
+    <div class="target-year">2027</div>
+    <div class="target-text">
+      <p>2027年秋——<br>池袋演劇祭へのエントリーを予定しています。</p>
+      <p>心理臨床の現場で見つめてきた<br>「人の再生の物語」を、<br>はじめて本格的な舞台作品として届けます。</p>
+      <p>この舞台を実現するために、<br>いま、力を貸してくださる方を探しています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLLAB -->
+<section class="section section-light" id="collab">
+  <div class="container">
+    <div class="section-title fade-in">参加・協力</div>
+    <div class="gold-line fade-in"></div>
+    <div class="collab-cards fade-in">
+      <div class="collab-card">
+        <h4 class="collab-card-title">制作パートナーとして</h4>
+        <p class="collab-card-desc">
+          演出、出演、音楽、制作——<br>
+          この舞台を一緒につくる仲間を探しています。
+        </p>
+        <a href="#contact" class="about-link">お問い合わせ →</a>
+      </div>
+      <div class="collab-card">
+        <h4 class="collab-card-title">スポンサーとして</h4>
+        <p class="collab-card-desc">
+          公演の実現を資金面から支えてくださる<br>
+          企業・個人の方を募集しています。
+        </p>
+        <a href="#contact" class="about-link">お問い合わせ →</a>
+      </div>
+      <div class="collab-card">
+        <h4 class="collab-card-title">応援してくださる方へ</h4>
+        <p class="collab-card-desc">
+          SNSでのシェア、noteのフォロー、<br>
+          公演への来場——そのひとつひとつが、大きな力になります。
+        </p>
+        <a href="#contact" class="about-link">お問い合わせ →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-light" id="contact">
+  <div class="container">
+    <div class="section-title fade-in">お問い合わせ</div>
+    <div class="gold-line fade-in"></div>
+    <div class="contact-wrap fade-in">
+      <p class="contact-name">公珠子（KUMIKO）</p>
+      <form id="contactForm" onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">送信する</button>
+      </form>
+      <p class="contact-note">note: 準備中</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 デメテルプロジェクト</p>
+</footer>
+
+<script>
+// ===== PARTICLES =====
+(function() {
+  const container = document.getElementById('particles');
+  const count = 35;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = (Math.random() * 100 + 100) + '%';
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    container.appendChild(p);
+  }
+})();
+
+// ===== NAV SCROLL =====
+(function() {
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+})();
+
+// ===== HAMBURGER =====
+(function() {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  const links = menu.querySelectorAll('a');
+
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('active');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      btn.classList.remove('active');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+// ===== ACCORDION =====
+(function() {
+  const cards = document.querySelectorAll('[data-accordion]');
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      const wasOpen = card.classList.contains('open');
+      cards.forEach(function(c) { c.classList.remove('open'); });
+      if (!wasOpen) card.classList.add('open');
+    });
+  });
+})();
+
+// ===== FADE IN (IntersectionObserver) =====
+(function() {
+  const els = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el) { observer.observe(el); });
+  } else {
+    els.forEach(function(el) { el.classList.add('visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
