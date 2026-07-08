@@ -155,8 +155,21 @@ body {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('hero-bg.jpeg') center center / cover no-repeat;
-  opacity: 0.4;
+  background: url('hero-bg-v2.png') center center / cover no-repeat;
+  opacity: 1;
+  filter: brightness(0.85) saturate(1.16);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(16, 32, 72, 0.34) 0%,
+    rgba(14, 26, 58, 0.16) 28%,
+    rgba(11, 17, 35, 0.13) 52%,
+    rgba(11, 17, 35, 0.40) 76%,
+    rgba(11, 17, 35, 0.55) 100%);
 }
 
 .hero-particles {
@@ -225,16 +238,18 @@ body {
   color: #fff;
   letter-spacing: 6px;
   margin-bottom: 24px;
-  opacity: 0.9;
+  opacity: 1;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
 }
 
 .hero-sub {
   font-family: 'Noto Serif JP', serif;
   font-size: 14px;
   font-weight: 300;
-  color: #D4C8B8;
+  color: #F5EEDD;
   letter-spacing: 3px;
-  opacity: 0.8;
+  opacity: 1;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
 }
 
 .scroll-indicator {
@@ -1049,6 +1064,7 @@ body {
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-particles" id="particles"></div>
   <div class="hero-content fade-in">
     <p class="hero-tagline">
