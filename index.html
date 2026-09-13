@@ -928,6 +928,19 @@ body {
   color: #1B2A4A;
 }
 
+.form-status {
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 2;
+  color: #8B7355;
+  letter-spacing: 0.5px;
+}
+.form-status a {
+  color: #8B7355;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139, 115, 85, 0.4);
+}
 .contact-note {
   margin-top: 32px;
   font-size: 13px;
@@ -1366,7 +1379,7 @@ body {
     <div class="gold-line fade-in"></div>
     <div class="contact-wrap fade-in">
       <p class="contact-name">公珠子（KUMIKO）</p>
-      <form id="contactForm" onsubmit="return false;">
+      <form id="contactForm">
         <div class="form-group">
           <label for="name">お名前</label>
           <input type="text" id="name" name="name" required>
@@ -1381,6 +1394,7 @@ body {
         </div>
         <button type="submit" class="submit-btn">送信する</button>
       </form>
+      <p class="form-status" id="formStatus" hidden></p>
       <p class="contact-note">
         YouTube　<a href="https://www.youtube.com/@dream18699" target="_blank" rel="noopener">チャンネルを見る</a><br>
         note: 準備中
@@ -1475,6 +1489,38 @@ body {
   } else {
     els.forEach(function(el) { el.classList.add('visible'); });
   }
+})();
+
+// ===== CONTACT FORM (メールソフトを開く) =====
+(function() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const status = document.getElementById('formStatus');
+  const parts = ['kumiko.yachimori', 'gmail.com'];
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const addr = parts[0] + '@' + parts[1];
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const subject = '『声のない森』サイトからのお問い合わせ';
+    const body =
+      'お名前：' + name + '\n' +
+      'メールアドレス：' + email + '\n' +
+      '\n' + message + '\n';
+
+    const url = 'mailto:' + addr +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    status.hidden = false;
+    status.innerHTML = 'メールソフトを開きます。開いた画面で送信してください。<br>' +
+      '開かない場合は、お手数ですが <a href="mailto:' + addr + '">' + addr + '</a> 宛にお送りください。';
+
+    window.location.href = url;
+  });
 })();
 </script>
 
