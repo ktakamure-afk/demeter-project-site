@@ -1035,6 +1035,12 @@ body {
     padding: 32px 24px;
   }
 
+  /* 「名づけた」の2行が、どの幅でも2行に収まるよう文字の大きさを合わせる */
+  .origin-card p.origin-name {
+    font-size: clamp(12px, calc((100vw - 88px) / 19.6), 15px);
+    letter-spacing: 0;
+  }
+
   .credential-item {
     flex-direction: column;
     gap: 6px;
@@ -1210,9 +1216,9 @@ body {
         あの<wbr>小さな<wbr>物語のように<wbr>——<br>
         今度は、<wbr>舞台で<wbr>届けたい。
       </p>
-      <p>
-        そんな<wbr>思いを<wbr>込めて<br>
-        この<wbr>プロジェクトを<wbr>「デメテル プロジェクト」と<wbr>名づけた。
+      <p class="origin-name">
+        そんな<wbr>思いを<wbr>込めて、<wbr>この<wbr>プロジェクトを<br>
+        「デメテル プロジェクト」と<wbr>名づけた。
       </p>
     </div>
   </div>
