@@ -572,7 +572,7 @@ body {
 }
 
 .vision-card.open .vision-card-body {
-  max-height: 500px;
+  max-height: 4000px;
   padding-top: 20px;
 }
 
@@ -1074,6 +1074,26 @@ body {
   .collab-card {
     padding: 32px 24px;
   }
+
+  .vision-card {
+    padding: 24px 20px;
+  }
+
+  .vision-card-title {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .vision-card-body-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .vision-illust {
+    width: 120px;
+    height: 120px;
+  }
 }
 </style>
 </head>
@@ -1455,13 +1475,41 @@ body {
 // ===== ACCORDION =====
 (function() {
   const cards = document.querySelectorAll('[data-accordion]');
+
+  function fit(card) {
+    const body = card.querySelector('.vision-card-body');
+    if (!body) return;
+    if (card.classList.contains('open')) {
+      body.style.maxHeight = body.scrollHeight + 'px';
+    } else {
+      body.style.maxHeight = '';
+    }
+  }
+
+  function fitAll() {
+    cards.forEach(fit);
+  }
+
   cards.forEach(function(card) {
     card.addEventListener('click', function() {
       const wasOpen = card.classList.contains('open');
       cards.forEach(function(c) { c.classList.remove('open'); });
       if (!wasOpen) card.classList.add('open');
+      fitAll();
     });
   });
+
+  // 最初の表示、画像の読み込み、画面の回転や幅の変更に合わせて測り直す
+  fitAll();
+  window.addEventListener('load', fitAll);
+  window.addEventListener('resize', fitAll);
+  window.addEventListener('orientationchange', fitAll);
+  document.querySelectorAll('.vision-illust').forEach(function(img) {
+    if (!img.complete) img.addEventListener('load', fitAll);
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitAll);
+  }
 })();
 
 // ===== FADE IN (IntersectionObserver) =====
