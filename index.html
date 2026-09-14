@@ -39,6 +39,10 @@ html {
 }
 
 body {
+  /* 語句の切れ目（<wbr>）でだけ改行する。語の途中で切れない。
+     どうしても収まらないときだけ、途中でも折り返す */
+  word-break: keep-all;
+  overflow-wrap: break-word;
   font-family: 'Noto Serif JP', serif;
   font-weight: 300;
   color: #2D2D2D;
@@ -979,12 +983,6 @@ body {
   /* パソコンだけの改行。スマートフォンでは無効にする */
   .pc-br {
     display: none;
-  }
-
-  /* 語句の切れ目（）でだけ改行する。収まらないときだけ、途中でも折り返す */
-  body {
-    word-break: keep-all;
-    overflow-wrap: break-word;
   }
 
   .nav {
