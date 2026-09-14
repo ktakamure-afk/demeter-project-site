@@ -976,6 +976,11 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  /* パソコンだけの改行。スマートフォンでは無効にする */
+  .pc-br {
+    display: none;
+  }
+
   /* 語句の切れ目（<wbr>）でだけ改行する。収まらないときだけ、途中でも折り返す */
   body {
     word-break: keep-all;
@@ -1179,8 +1184,7 @@ body {
     </div>
     <div class="fade-in">
       <p class="story-body">
-        35年間、<wbr>延べ4万件を<wbr>超える<wbr>対話の<wbr>現場に<wbr>立ち続けた<br>
-        一人の<wbr>心理臨床家が<wbr>いる。<br><br>
+        35年間、<wbr>延べ4万件を<wbr>超える<wbr>対話の<wbr>現場に<wbr>立ち続けた<br class="pc-br">一人の<wbr>心理臨床家が<wbr>いる。<br><br>
         人生の<wbr>岐路に<wbr>立つ人々と<wbr>向き合い<br>
         絶望の<wbr>中でな<wbr>お希望の<wbr>光を<wbr>探そうとする<wbr>歩みに<wbr>伴走してきた。<br><br>
         その<wbr>対話の<wbr>積み重ねの<wbr>中で、<wbr>ひとつの<wbr>確信に<wbr>至る。<br>
