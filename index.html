@@ -1475,41 +1475,50 @@ body {
 // ===== ACCORDION =====
 (function() {
   const cards = document.querySelectorAll('[data-accordion]');
+  const DURATION = 600; // CSS の開閉にかかる時間より少し長く
 
-  function fit(card) {
-    const body = card.querySelector('.vision-card-body');
+  function bodyOf(card) { return card.querySelector('.vision-card-body'); }
+
+  function open(card) {
+    const body = bodyOf(card);
     if (!body) return;
-    if (card.classList.contains('open')) {
-      body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-      body.style.maxHeight = '';
-    }
+    card.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+    clearTimeout(body._timer);
+    // 開ききったら上限そのものを外す。以後どれだけ行が増えても切れない
+    body._timer = setTimeout(function() {
+      if (card.classList.contains('open')) body.style.maxHeight = 'none';
+    }, DURATION);
   }
 
-  function fitAll() {
-    cards.forEach(fit);
+  function close(card) {
+    const body = bodyOf(card);
+    if (!body) return;
+    clearTimeout(body._timer);
+    if (body.style.maxHeight === 'none') {
+      // 上限を外したままだと閉じる動きが出ないので、いったん実寸に戻す
+      body.style.maxHeight = body.scrollHeight + 'px';
+      void body.offsetHeight;
+    }
+    card.classList.remove('open');
+    body.style.maxHeight = '';
   }
 
   cards.forEach(function(card) {
     card.addEventListener('click', function() {
       const wasOpen = card.classList.contains('open');
-      cards.forEach(function(c) { c.classList.remove('open'); });
-      if (!wasOpen) card.classList.add('open');
-      fitAll();
+      cards.forEach(close);
+      if (!wasOpen) open(card);
     });
   });
 
-  // 最初の表示、画像の読み込み、画面の回転や幅の変更に合わせて測り直す
-  fitAll();
-  window.addEventListener('load', fitAll);
-  window.addEventListener('resize', fitAll);
-  window.addEventListener('orientationchange', fitAll);
-  document.querySelectorAll('.vision-illust').forEach(function(img) {
-    if (!img.complete) img.addEventListener('load', fitAll);
+  // 最初から開いているものは、動きを付けずに上限を外しておく
+  cards.forEach(function(card) {
+    if (card.classList.contains('open')) {
+      const body = bodyOf(card);
+      if (body) body.style.maxHeight = 'none';
+    }
   });
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(fitAll);
-  }
 })();
 
 // ===== FADE IN (IntersectionObserver) =====
